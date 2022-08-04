@@ -13,11 +13,7 @@ function App() {
     const [gameStage, setGameStage] = useState(stages[0].name);
     const [words] = useState(wordsList);
 
-    return (
-        <div className="App">
-            <SecretWord />
-        </div>
-    );
+    return <div className="App">{gameStage === "start" && <SecretWord />}</div>;
 }
 
 export default App;
