@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { wordsList } from "./data/words";
+
 import "./App.css";
-import SecretWord from "./components/SecretWord";
+
+import StartScreen from "./components/StartScreen";
+import Game from "./components/Game";
+import GameOver from "./components/GameOver";
 
 const stages = [
     { id: 1, name: "start" },
@@ -13,7 +17,17 @@ function App() {
     const [gameStage, setGameStage] = useState(stages[0].name);
     const [words] = useState(wordsList);
 
-    return <div className="App">{gameStage === "start" && <SecretWord />}</div>;
+    const startGame = () => {
+        setGameStage(stages[1].name);
+    };
+
+    return (
+        <div>
+            {gameStage === "start" && <StartScreen startGame={startGame} />}
+            {gameStage === "game" && <Game />}
+            {gameStage === "end" && <GameOver />}
+        </div>
+    );
 }
 
 export default App;
