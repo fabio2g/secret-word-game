@@ -17,8 +17,18 @@ function App() {
     const [gameStage, setGameStage] = useState(stages[0].name);
     const [words] = useState(wordsList);
 
+    // Seleciona a categoria
+    const listCategory = Object.keys(words);
+    const category =
+        listCategory[Math.floor(Math.random() * listCategory.length)];
+    // Seleciona uma palavra em categoria
+    const word =
+        words[category][Math.floor(Math.random() * words[category].length)];
+
     // Set do estados do Jogo
     const startGame = () => {
+        console.log(category);
+        console.log(word);
         setGameStage(stages[1].name);
     };
 
