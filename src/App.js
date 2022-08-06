@@ -16,19 +16,31 @@ const stages = [
 function App() {
     const [gameStage, setGameStage] = useState(stages[0].name);
     const [words] = useState(wordsList);
+    const [category, setCategory] = useState("");
+    const [word, setWord] = useState("");
+    const [letters, setLetters] = useState([]);
 
-    // Seleciona a categoria
-    const listCategory = Object.keys(words);
-    const category =
-        listCategory[Math.floor(Math.random() * listCategory.length)];
-    // Seleciona uma palavra em categoria
-    const word =
-        words[category][Math.floor(Math.random() * words[category].length)];
+    const selectCategoryAndWord = () => {
+        // Seleciona a categoria
+        const listCategory = Object.keys(words);
+        const category =
+            listCategory[Math.floor(Math.random() * listCategory.length)];
+        // Seleciona uma palavra em categoria
+        const word =
+            words[category][Math.floor(Math.random() * words[category].length)];
 
-    // Set do estados do Jogo
+        return { category, word };
+    };
+
     const startGame = () => {
-        console.log(category);
-        console.log(word);
+        const { category, word } = selectCategoryAndWord();
+
+        let caracteres = word.split("");
+        caracteres = caracteres.map((l) => l.toLowerCase());
+
+        setCategory(category);
+        setWord(word);
+        setLetters(caracteres);
         setGameStage(stages[1].name);
     };
 
@@ -43,7 +55,14 @@ function App() {
     return (
         <div>
             {gameStage === "start" && <StartScreen startGame={startGame} />}
-            {gameStage === "game" && <Game verifyLetters={verifyLetters} />}
+            {gameStage === "game" && (
+                <Game
+                    verifyLetters={verifyLetters}
+                    category={category}
+                    word={word}
+                    letters={letters}
+                />
+            )}
             {gameStage === "end" && <GameOver retryGame={retryGame} />}
         </div>
     );
