@@ -1,6 +1,6 @@
 import "./Game.css";
 
-const Game = () => {
+const Game = ({ verifyLetters }) => {
     return (
         <div className="game">
             <p className="points">
@@ -16,7 +16,7 @@ const Game = () => {
                 <p>Tente adivinhe a letra da palavra:</p>
                 <form>
                     <input type="text" name="letter" maxLength="1" />
-                    <button>Jogar!</button>
+                    <button onClick={verifyLetters}>Jogar!</button>
                 </form>
             </div>
             <div className="wrongLetterContainer">
