@@ -1,7 +1,9 @@
+import "./StartScreen.css"
+
 const StartScreen = ({ startGame }) => {
     return (
-        <div>
-            <h2>Secret Word</h2>
+        <div className="start">
+            <h1>Secret Word</h1>
             <p>Clique no botão para começar</p>
             <button onClick={startGame}>Começar o jogo</button>
         </div>

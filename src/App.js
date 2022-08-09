@@ -20,6 +20,11 @@ function App() {
     const [word, setWord] = useState("");
     const [letters, setLetters] = useState([]);
 
+    const [correctLetters, setCorrectLetters] = useState([]);
+    const [wrongLetters, setWrongLetters] = useState([]);
+    const [attempts, setAttempts] = useState(3);
+    const [score, setScore] = useState(0);
+
     const selectCategoryAndWord = () => {
         // Seleciona a categoria
         const listCategory = Object.keys(words);
@@ -44,8 +49,27 @@ function App() {
         setGameStage(stages[1].name);
     };
 
-    const verifyLetters = () => {
-        setGameStage(stages[2].name);
+    const verifyLetters = (letter) => {
+        const normalizeLetter = letter.toLowerCase();
+
+        if (
+            correctLetters.includes(normalizeLetter) ||
+            wrongLetters.includes(normalizeLetter)
+        ) {
+            return;
+        }
+
+        if (letters.includes(normalizeLetter)) {
+            setCorrectLetters((actualCorrectLetters) => [
+                ...actualCorrectLetters,
+                normalizeLetter,
+            ]);
+        } else {
+            setWrongLetters((actualWrongLetters) => [
+                ...actualWrongLetters,
+                normalizeLetter,
+            ]);
+        }
     };
 
     const retryGame = () => {
@@ -61,6 +85,10 @@ function App() {
                     category={category}
                     word={word}
                     letters={letters}
+                    correctLetters={correctLetters}
+                    wrongLetters={wrongLetters}
+                    attempts={attempts}
+                    score={score}
                 />
             )}
             {gameStage === "end" && <GameOver retryGame={retryGame} />}
