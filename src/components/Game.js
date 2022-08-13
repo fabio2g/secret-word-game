@@ -34,7 +34,7 @@ const Game = ({
                 {letters.map((letter, i) =>
                     correctLetters.includes(letter) ? (
                         <span key={i} className="letter">
-                            {letter}{" "}
+                            {letter}
                         </span>
                     ) : (
                         <span key={i} className="blankSquare"></span>
@@ -49,7 +49,7 @@ const Game = ({
                         name="letter"
                         maxLength="1"
                         required
-                        pattern="[A-Za-z]"
+                        pattern="[a-z à-ú A-Z À-Ú]"
                         title="Apenas letras de A - Z são válidas."
                         onChange={(e) => setLetter(e.target.value)}
                         value={letter}
