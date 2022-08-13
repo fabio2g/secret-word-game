@@ -86,12 +86,14 @@ function App() {
     }, [attempts]);
 
     useEffect(() => {
-        const uniqueLetters = [...new Set(letters)];
-        if (uniqueLetters.length === correctLetters.length) {
-            setScore((actualScore) => (actualScore += 100));
-            startGame();
+        if (gameStage === "game") {
+            const uniqueLetters = [...new Set(letters)];
+            if (uniqueLetters.length === correctLetters.length) {
+                setScore((actualScore) => (actualScore += 100));
+                startGame();
+            }
         }
-    }, [correctLetters, letters, startGame]);
+    }, [correctLetters, letters, startGame, gameStage]);
 
     const retryGame = () => {
         setScore(0);
