@@ -32,7 +32,6 @@ function App() {
         const word =
             words[category][Math.floor(Math.random() * words[category].length)];
 
-        console.log(word);
         return { category, word };
     }, [words]);
 
