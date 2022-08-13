@@ -1,2 +1,2 @@
 # secret-word-game
-Jogo de adivinhação feito em React.js
+https://secret-word-game.herokuapp.com/
