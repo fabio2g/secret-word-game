@@ -4,5 +4,11 @@
 
 .start p {
     margin-bottom: 2em;
-    color: var(--color-3)
+    color: var(--color-3);
+}
+
+@media (max-width: 600px) {
+    .start h1 {
+        font-size: 28px;
+    }
 }
