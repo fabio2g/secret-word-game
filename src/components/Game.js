@@ -51,6 +51,7 @@ const Game = ({
                         required
                         pattern="[a-z à-ú A-Z À-Ú]"
                         title="Apenas letras de A - Z são válidas."
+                        autoComplete="off"
                         onChange={(e) => setLetter(e.target.value)}
                         value={letter}
                         ref={inputRef}
